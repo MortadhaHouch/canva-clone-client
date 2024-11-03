@@ -1,0 +1,97 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    transition: .25s;
+}
+#root{
+    height: 100vh;
+    max-height: fit-content;
+    width: 100vw;
+    overflow-x: hidden;
+}
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: rgba(137, 43, 226, 0.5);
+    backdrop-filter: blur(10px);
+}
+aside.aside{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: cornflowerblue;
+    height: 100vh;
+    width: 100px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+aside.aside.shown{
+    left: 0;
+}
+aside.aside.hidden{
+    left: -100px;
+}
+aside.aside > button.aside-toggle{
+    position: absolute;
+    top: 200px;
+    left: 100%;
+}
+aside.aside > div{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+section.drawing-section{
+    width: 100vw;
+    height: 100vh;
+}
+aside.edit-bar{
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100vh;
+    max-height: fit-content;
+    width: 200px;
+    overflow-y: scroll;
+    background-color: rgb(255, 255, 255);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    padding: 5px;
+}
+aside.edit-bar div{
+    width:80%;
+}
+aside.edit-bar div:has(input[type="color"]){
+    width:40px;
+}
+aside.edit-bar div:has(input[type="color"]) input{
+    padding: 5px;
+}
+.glass{
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+form.glass div{
+    width: 80%;
+}
