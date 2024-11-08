@@ -10,12 +10,15 @@ import Signup from './components/screens/Signup.jsx';
 import About from './components/screens/About.jsx';
 import ContactUs from './components/screens/ContactUs.jsx';
 import Dashboard from './components/screens/Dashboard.jsx';
-import Editor from './components/LayoutComponents/Editor.jsx';
+// import Editor from './components/LayoutComponents/Editor.jsx';
+import TlDrawEditor from './components/renderers/TlDrawEditor.jsx';
+import Features from './components/screens/Features.jsx';
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />} >
+      <Route path="/features" element={<Features />} />
       <Route path="/home" element={<Home />} />
-      <Route path="/editor" element={<Editor />} />
+      <Route path="/editor" element={<TlDrawEditor />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/about" element={<About />} />
       <Route path="/contact-us" element={<ContactUs />} />

@@ -4,7 +4,9 @@ export default async function fetchData(url,method,body,setIsLoading){
         const request = await fetch(import.meta.env.VITE_REQUEST_URI+url,{
             method,
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                "Authorization": `Bearer ${document.cookie.auth_token}`,
+                "Cache-Control":"no"
             },
             body: JSON.stringify(body)
         })

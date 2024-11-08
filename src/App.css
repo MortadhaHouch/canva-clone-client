@@ -11,15 +11,14 @@
     overflow-x: hidden;
 }
 header{
-    position: fixed;
+    /* position: fixed;
     top: 0;
-    left: 0;
+    left: 0; */
     height: fit-content;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    background-color: rgba(137, 43, 226, 0.5);
     backdrop-filter: blur(10px);
 }
 aside.aside{
@@ -84,6 +83,17 @@ aside.edit-bar div:has(input[type="color"]){
 aside.edit-bar div:has(input[type="color"]) input{
     padding: 5px;
 }
+main.main-page > section{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 0 90%);
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
 .glass{
     background: rgba( 255, 255, 255, 0.25 );
     box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
@@ -92,6 +102,89 @@ aside.edit-bar div:has(input[type="color"]) input{
     border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
+div.welcome-text{
+    position: absolute;
+    width:clamp(300px,50%,600px);
+    height:auto;
+    background-color: rgba( 255, 255, 255, 0.25 );
+    backdrop-filter: blur( 10px );
+    border-color: rgba(255, 255, 255,.45);
+    border-style: solid;
+    border-width: 2px 2px 0 0;
+    padding: 20px;
+    border-radius: 25px;
+}
+/* From Uiverse.io by adamgiebl */ 
+.cssbuttons-io-button {
+    background: #a370f0;
+    color: white;
+    font-family: inherit;
+    padding: 0.35em;
+    padding-left: 1.2em;
+    font-size: 17px;
+    font-weight: 500;
+    border-radius: 0.9em;
+    border: none;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    box-shadow: inset 0 0 1.6em -0.6em #714da6;
+    overflow: hidden;
+    position: relative;
+    height: 2.8em;
+    padding-right: 3.3em;
+    cursor: pointer;
+  }
+  
+  .cssbuttons-io-button .icon {
+    background: white;
+    margin-left: 1em;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.2em;
+    width: 2.2em;
+    border-radius: 0.7em;
+    box-shadow: 0.1em 0.1em 0.6em 0.2em #7b52b9;
+    right: 0.3em;
+    transition: all 0.3s;
+  }
+  
+  .cssbuttons-io-button:hover .icon {
+    width: calc(100% - 0.6em);
+  }
+  
+  .cssbuttons-io-button .icon svg {
+    width: 1.1em;
+    transition: transform 0.3s;
+    color: #7b52b9;
+  }
+  
+  .cssbuttons-io-button:hover .icon svg {
+    transform: translateX(0.1em);
+  }
+  
+  .cssbuttons-io-button:active .icon {
+    transform: scale(0.95);
+  }
+  
 form.glass div{
     width: 80%;
+}
+.nav-link{
+    position: relative;
+}
+.nav-link::before{
+    position: absolute;
+    width: 0;
+    height: 5px;
+    content: "";
+    background-color: #7b52b9;
+    bottom: 0;
+    left: 0;
+}
+.nav-link:hover:before{
+    width: 100%;
+    transition:width .25s;
 }
