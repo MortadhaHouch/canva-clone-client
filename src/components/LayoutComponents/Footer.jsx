@@ -14,7 +14,7 @@ export default function Footer() {
   return (
     <footer
       style={{
-        backgroundColor:theme.isDark?"#091057":"#4A628A",
+        backgroundColor:theme.isDark||JSON.parse(localStorage.getItem("isDark"))?"#091057":"#4A628A",
       }}
       className="text-light p-5 gap-5 d-flex flex-row justify-content-evenly align-items-center flex-wrap">
       <div className="d-flex flex-column justify-content-center align-items-center gap-3" style={{

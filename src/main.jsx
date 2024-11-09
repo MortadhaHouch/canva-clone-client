@@ -13,13 +13,24 @@ import Dashboard from './components/screens/Dashboard.jsx';
 // import Editor from './components/LayoutComponents/Editor.jsx';
 import TlDrawEditor from './components/renderers/TlDrawEditor.jsx';
 import Features from './components/screens/Features.jsx';
+import Profile from './components/LayoutComponents/Profile.jsx';
+import Projects from './components/screens/Projects.jsx';
+import Notifications from './components/screens/Notifications.jsx';
+import History from './components/screens/History.jsx';
+import Community from './components/screens/Community.jsx';
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />} >
       <Route path="/features" element={<Features />} />
       <Route path="/home" element={<Home />} />
       <Route path="/editor" element={<TlDrawEditor />} />
-      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path='community' element={<Community />}/>
+      <Route path="/dashboard" element={<Dashboard />}>
+        <Route path='profile' element={<Profile/>}/>
+        <Route path='projects' element={<Projects/>}/>
+        <Route path='activity-log' element={<History/>}/>
+        <Route path='notifications' element={<Notifications/>}/>
+      </Route>
       <Route path="/about" element={<About />} />
       <Route path="/contact-us" element={<ContactUs />} />
       <Route path="/login" element={<Login />} />
