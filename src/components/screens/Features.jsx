@@ -69,20 +69,20 @@ const features = [
   }
 ]
 export default function Features() {
-  const theme = useContext(ThemeContext)
+  const theme = useContext(ThemeContext);
   return (
-    <main 
-      style={{
-        backgroundColor:theme.isDark||JSON.parse(localStorage.getItem("isDark"))?"#133E87":"#E5D9F2"
-      }}
-      className="w-100 min-vh-100 d-flex flex-row justify-content-center align-items-center flex-wrap gap-5 main-page p-5">
+      <main
+          style={{
+            backgroundColor: theme.isDark || JSON.parse(localStorage.getItem("isDark")) ? "#133E87" : "#E5D9F2"
+          }}
+          className="w-100 min-vh-100 d-flex flex-row justify-content-center align-items-center flex-wrap gap-5 main-page p-5 position-relative">
         {
-          features.map((item,index)=>{
+          features.map((item, index) => {
             return (
-              <Card item={item} key={index} index={index}/>
+                <Card item={item} key={index} index={index}/>
             )
           })
         }
-    </main>
+      </main>
   )
 }

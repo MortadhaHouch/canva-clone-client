@@ -11,7 +11,7 @@ export default function Card({index,item}) {
         if(isInView){
             animationControls.start("animate")
         }else{
-            animationControls.start("initial")
+            animationControls.start("exit")
         }
     },[isInView,animationControls]);
     return (
@@ -21,12 +21,15 @@ export default function Card({index,item}) {
             className='d-flex flex-column justify-content-center align-items-center glass glass-card p-3'
             initial="initial"
             animate="animate"
+            exit="exit"
             variants={{
-                initial: { opacity: 0, scale: 0.9 },
-                animate: { opacity: 1, scale: 1 }
+                initial: { opacity: 0, x:-50,scale:.75 },
+                exit: { opacity: 0, x:50,scale:0 },
+                animate: { opacity: 1, x: 0 ,scale:1}
             }}
             transition={{
                 duration: 0.5*index,
+                delay: index*0.5,
                 ease: "easeInOut",
                 type: "spring"
             }}

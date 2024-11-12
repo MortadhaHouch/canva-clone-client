@@ -53,6 +53,13 @@ export default function Home() {
         </div>
         <Spline scene="https://prod.spline.design/OCzDFC6YBVeuF8Ww/scene.splinecode" />
       </section>
+      <section>
+        <div className='d-flex flex-column justify-content-center align-items-center position-absolute welcome-text'>
+          <h3>What are you waiting for</h3>
+          <p className={`${theme.isDark||JSON.parse(localStorage.getItem("isDark"))?"text-light":"text-dark"}`}>Design like a pro with ease! Start creating stunning designs today and take your creativity to the next level.</p>
+          <button className='btn btn-primary'>Get started</button>
+        </div>
+      </section>
     </main>
   )
 }

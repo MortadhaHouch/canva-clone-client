@@ -8,13 +8,20 @@ import Logo from "../../../public/assets/pen-tool.png"
 import { NavLink } from "react-router-dom";
 import {motion} from "framer-motion"
 import { ThemeContext } from "../../providers/themeProvider.jsx";
+import FileUpload from "../LayoutComponents/FileUpload.jsx";
+import {jwtDecode} from "jwt-decode"
+import { LoginContext } from "../../providers/loginProvider.jsx";
 export default function Signup() {
   const [email,setEmail] = useState("");
   const [firstName,setFirstName] = useState("");
   const [lastName,setLastName] = useState("");
   const [password,setPassword] = useState("");
-  const [cookies,setCookie] = useCookies(["auth_token"])
+  const [cookies,setCookie] = useCookies(["auth_token"]);
+  const [avatar,setAvatar] = useState("");
   const theme = useContext(ThemeContext)
+  const loginState = useContext(LoginContext);
+  const [isLoading,setIsLoading] = useState(false);
+  const [emailError,setEmailError] = useState("");
   async function handleSubmit(e){
     e.preventDefault();
     try {
@@ -22,17 +29,40 @@ export default function Signup() {
         email,
         password,
         firstName,
-        lastName
-      })
-      if(response.isVerified){
-        setCookie("auth_token",response.token,sign(
-          {
-            path: "/",
-            maxAge:60*60*24*7
-          },import.meta.env.VITE_SECRET_KEY
-        ))
-        window.location.href = "/dashboard"
+        lastName,
+        avatar
+      },setIsLoading)
+      if(response.existence_error){
+        setEmailError(response.existence_error);
       }
+      const decodedToken = jwtDecode(response.token);
+      console.log(decodedToken);
+      if(decodedToken.isVerified){
+        loginState.setIsLoggedIn(true);
+        localStorage.setItem("isLoggedIn",true);
+        localStorage.setItem("email",decodedToken.email);
+        localStorage.setItem("firstName",decodedToken.firstName);
+        localStorage.setItem("lastName",decodedToken.lastName);
+        localStorage.setItem("avatar",decodedToken.avatar);
+        localStorage.setItem("isLoggedIn",JSON.parse(decodedToken.isLoggedIn));
+        setCookie("auth_token",sign({
+          email:decodedToken.email,
+          firstName:decodedToken.firstName,
+          lastName:decodedToken.lastName,
+        },import.meta.env.VITE_SECRET_KEY),{
+          path:"/",
+          maxAge:60*60*24*7,
+          expires:new Date(Date.now()+60*60*24*7*1000),
+          sameSite:"strict"
+        })
+      }
+      setCookie("auth_token",response.token,sign(
+        {
+          path: "/",
+          maxAge:60*60*24*7
+        },import.meta.env.VITE_SECRET_KEY
+      ))
+      location.assign("/home");
     } catch (error) {
       console.log(error);
     }
@@ -107,7 +137,7 @@ export default function Signup() {
         </div>
         <div>
           <label htmlFor="lastName">lastName</label>
-          <input value={lastName} onChange={(e) => setLastName(e.target.value)} type="password" name="lastName" id="lastName" className="form-control"/>
+          <input value={lastName} onChange={(e) => setLastName(e.target.value)} type="text" name="lastName" id="lastName" className="form-control"/>
         </div>
         <div>
           <label htmlFor="email">email</label>
@@ -116,6 +146,12 @@ export default function Signup() {
         <div>
           <label htmlFor="password">password</label>
           <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" name="password" id="password" className="form-control"/>
+        </div>
+        <div className="d-flex flex-row justify-content-center align-items-center">
+          <FileUpload setAvatar={setAvatar}/>
+          {
+            avatar && <img src={avatar} alt="" style={{width:100,height:100}}/>
+          }
         </div>
         <div className="d-flex flex-column justify-content-center align">
           <button className="btn btn-primary w-100">sign up</button>

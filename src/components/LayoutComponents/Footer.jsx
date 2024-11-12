@@ -15,11 +15,16 @@ export default function Footer() {
     <footer
       style={{
         backgroundColor:theme.isDark||JSON.parse(localStorage.getItem("isDark"))?"#091057":"#4A628A",
+        zIndex:10
       }}
-      className="text-light p-5 gap-5 d-flex flex-row justify-content-evenly align-items-center flex-wrap">
-      <div className="d-flex flex-column justify-content-center align-items-center gap-3" style={{
-        width:"clamp(300px,40%,450px)"
-      }}>
+      className="text-light p-5 gap-5 d-flex flex-row justify-content-evenly align-items-center flex-wrap"
+    >
+      <div
+          className="d-flex flex-column justify-content-center align-items-center gap-3"
+          style={{
+            width:"clamp(300px,40%,450px)"
+          }}
+      >
         <label htmlFor="Email" className="w-100 text-start">Email</label>
         <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" id="Email" name="Email" placeholder="Email" className="form-control"/>
         <button disabled={email.length===0} className="btn btn-primary w-100">Join our news letter</button>
